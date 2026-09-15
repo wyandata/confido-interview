@@ -1,0 +1,33 @@
+models:
+  - name: stg_contacts
+    description: "Staged contact records used for customer and subsidiary mappings."
+
+    columns:
+      - name: id
+        description: "Unique identifier for the contact."
+        tests:
+          - not_null
+          - unique
+
+      - name: remote_id
+        description: "Identifier for the contact in the external accounting system."
+        tests:
+          - unique
+
+      - name: parent_remote_id
+        description: "External identifier for the parent contact, when applicable."
+
+      - name: global_customer_id
+        description: "Identifier for the associated Confido global customer, when mapped."
+
+      - name: distribution_center_id
+        description: "Identifier for the associated Confido distribution center, when mapped."
+
+      - name: name
+        description: "Contact name."
+
+      - name: company_detail_id
+        description: "Identifier for the associated company details record."
+
+      - name: _updated_at
+        description: "Timestamp when the source record was last updated."

@@ -1,0 +1,28 @@
+models:
+  - name: stg_company_details
+    description: "Staged company detail records."
+
+    columns:
+      - name: id
+        description: "Unique identifier for the company details record."
+        tests:
+          - not_null
+          - unique
+
+      - name: name
+        description: "Company name."
+
+      - name: merge_uuid
+        description: "UUID used for company record merging."
+
+      - name: muffin_organization_id
+        description: "Identifier for the organization in the external Muffin system."
+
+      - name: forecast_end_day_of_week
+        description: "Configured end day of the forecast week."
+
+      - name: prevent_customer_remapping
+        description: "Indicates whether customer remapping is disabled for the company."
+
+      - name: _updated_at
+        description: "Timestamp when the source record was last updated."

@@ -1,0 +1,39 @@
+models:
+  - name: stg_invoices
+    description: "Staged invoices from the raw Confido invoice source."
+
+    columns:
+      - name: id
+        description: "Unique identifier for the invoice."
+        tests:
+          - not_null
+          - unique
+
+      - name: number
+        description: "Invoice number."
+
+      - name: paid_on_date
+        description: "Date and time the invoice was paid."
+
+      - name: customer_remote_id
+        description: "External accounting-system customer identifier."
+
+      - name: subsidiary_id
+        description: "External subsidiary identifier associated with the invoice."
+        tests:
+          - not_null
+
+      - name: created_at
+        description: "Timestamp when the invoice was created."
+
+      - name: company_detail_id
+        description: "Confido company detail identifier."
+
+      - name: check_remit_item_id
+        description: "Identifier for the check remittance item associated with the invoice."
+
+      - name: currency
+        description: "Currency code recorded on the source invoice; may be null when the source does not provide a currency."
+
+      - name: _updated_at
+        description: "Timestamp when the source record was last updated."

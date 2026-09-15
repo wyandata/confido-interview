@@ -1,0 +1,110 @@
+models:
+  - name: fct_invoice_line_items
+    description: >
+      Standardized invoice line items for external use. Each row represents
+      one invoice line item from the source accounting system. Internal
+      product and customer identifiers are populated where an unambiguous
+      mapping exists.
+
+    columns:
+      - name: invoice_line_item_id
+        description: "Unique identifier for the invoice line item."
+        tests:
+          - not_null
+          - unique
+
+      - name: invoice_id
+        description: "Confido identifier for the associated invoice."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_invoices')
+                field: id
+
+      - name: quantity
+        description: >
+          Original quantity recorded on the invoice line item. Null for
+          non-product line items such as services or discount/adjustment
+          lines, which the source system records only as a total amount.
+
+      - name: total_amount
+        description: "Original total dollar amount recorded on the invoice line item."
+        tests:
+          - not_null
+
+      - name: unit_price
+        description: >
+          Original unit price recorded on the invoice line item. Null for
+          non-product line items such as discount/adjustment lines. For
+          services lines, this is typically equal to total_amount since no
+          quantity is recorded.
+
+      - name: invoice_number
+        description: "Invoice number from the source accounting system."
+        tests:
+          - not_null
+
+      - name: paid_on_date
+        description: "Date the invoice was paid."
+
+      - name: currency
+        description: "Currency code recorded on the source invoice; may be null when the source does not provide a currency."
+
+      - name: invoice_created_at
+        description: "Timestamp when the invoice was created."
+        tests:
+          - not_null
+
+      - name: product_id
+        description: >
+          Confido product identifier when the external item maps unambiguously
+          to one product. Null when the item maps to zero or multiple products
+          (see int_item_product_mapping).
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_products')
+                field: id
+              config:
+                where: "product_id is not null"
+
+      - name: product_name
+        description: "Name of the mapped Confido product."
+
+      - name: item_remote_id
+        description: "External accounting-system item identifier, kept for traceability."
+        tests:
+          - not_null
+
+      - name: item_name
+        description: "External accounting-system item name."
+
+      - name: global_customer_id
+        description: >
+          Confido global customer identifier when a valid mapping exists.
+          Null when the invoice's customer_remote_id has no corresponding
+          entry in int_customer_mapping.
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_global_customers')
+                field: id
+              config:
+                where: "global_customer_id is not null"
+
+      - name: global_customer_name
+        description: "Name of the mapped Confido global customer."
+
+      - name: distribution_center_id
+        description: "Confido distribution center identifier associated with the invoice subsidiary."
+        tests:
+          - relationships:
+              arguments:
+                to: ref('stg_confido_distribution_centers')
+                field: id
+              config:
+                where: "distribution_center_id is not null"
+
+      - name: distribution_center_name
+        description: "Name of the associated Confido distribution center."

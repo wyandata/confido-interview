@@ -1,0 +1,17 @@
+models:
+  - name: int_customer_mapping
+    description: >
+      Maps external accounting-system customer IDs to Confido global customers
+      when a valid internal customer mapping exists.
+
+    columns:
+      - name: customer_remote_id
+        description: "External accounting-system customer identifier."
+        tests:
+          - not_null
+          - unique
+
+      - name: global_customer_id
+        description: "Confido global customer identifier."
+        tests:
+          - not_null

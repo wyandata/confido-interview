@@ -1,0 +1,44 @@
+sources:
+  - name: confido
+    database: CONFIDO_DEMO
+    schema: PUBLIC
+
+    tables:
+      - name: retailers
+        description: "Retailer records."
+
+      - name: invoice_items
+        description: "Invoice line items synced from the external accounting system."
+
+      - name: invoices
+        description: "Invoices synced from the external accounting system."
+
+      - name: confido_distribution_centers
+        description: "Confido's internal distribution centers."
+
+      - name: global_customers
+        description: "Confido's internal standardized customer records."
+
+      - name: products
+        description: "Confido's internal product records."
+
+      - name: product_prices
+        description: "Product pricing records."
+
+      - name: product_shipping_configs
+        description: "Product shipping configuration records."
+
+      - name: map_contact_subsidiaries
+        description: "Mapping between contacts and subsidiaries."
+
+      - name: contacts
+        description: "Contact records used for customer and subsidiary mappings."
+
+      - name: product_relationships
+        description: "Relationships between products."
+
+      - name: items
+        description: "External accounting-system item records."
+
+      - name: company_details
+        description: "Company detail records."

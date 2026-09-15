@@ -1,0 +1,31 @@
+models:
+  - name: stg_product_prices
+    description: "Staged product pricing records."
+
+    columns:
+      - name: id
+        description: "Unique identifier for the product price record."
+        tests:
+          - not_null
+          - unique
+
+      - name: product_id
+        description: "Identifier for the associated product."
+
+      - name: amount
+        description: "Product price amount."
+
+      - name: global_customer_id
+        description: "Global customer associated with the price."
+
+      - name: distribution_center_id
+        description: "Distribution center associated with the price."
+
+      - name: forecast_version_id
+        description: "Forecast version associated with the price."
+
+      - name: effective_at
+        description: "Date on which the price becomes effective."
+
+      - name: _updated_at
+        description: "Timestamp when the source record was last updated."

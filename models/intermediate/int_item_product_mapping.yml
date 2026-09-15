@@ -1,0 +1,17 @@
+models:
+  - name: int_item_product_mapping
+    description: >
+      Maps external accounting-system item IDs to Confido products when
+      the external item maps to exactly one product.
+
+    columns:
+      - name: item_remote_id
+        description: "External accounting-system item identifier."
+        tests:
+          - not_null
+          - unique
+
+      - name: product_id
+        description: "Confido product identifier for an unambiguous mapping."
+        tests:
+          - not_null

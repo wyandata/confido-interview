@@ -1,0 +1,25 @@
+models:
+  - name: stg_items
+    description: "Staged item records synced from the external accounting system."
+
+    columns:
+      - name: id
+        description: "Unique identifier for the internal item record."
+        tests:
+          - not_null
+          - unique
+
+      - name: remote_id
+        description: "Identifier for the item in the external accounting system."
+        tests:
+          - not_null
+          - unique
+
+      - name: name
+        description: "Item name from the external accounting system."
+
+      - name: company_detail_id
+        description: "Identifier for the associated company details record."
+
+      - name: _updated_at
+        description: "Timestamp when the source record was last updated."

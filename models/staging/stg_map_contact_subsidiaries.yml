@@ -1,0 +1,19 @@
+models:
+  - name: stg_map_contact_subsidiaries
+    description: "Staged mapping between contacts and subsidiaries."
+
+    columns:
+      - name: id
+        description: "Unique identifier for the contact-subsidiary mapping."
+        tests:
+          - not_null
+          - unique
+
+      - name: contact_id
+        description: "Identifier for the associated contact."
+
+      - name: subsidiary_id
+        description: "Identifier for the associated subsidiary."
+
+      - name: _updated_at
+        description: "Timestamp when the source record was last updated."

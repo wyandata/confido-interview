@@ -1,0 +1,31 @@
+models:
+  - name: stg_retailers
+    description: "Staged retailer records from the raw Confido retailer source."
+
+    columns:
+      - name: id
+        description: "Unique identifier for the retailer."
+        tests:
+          - not_null
+          - unique
+
+      - name: _uuid
+        description: "UUID associated with the retailer."
+
+      - name: name
+        description: "Name of the retailer."
+
+      - name: company_detail_id
+        description: "Confido company detail identifier."
+
+      - name: is_custom
+        description: "Indicates whether the retailer is a custom retailer."
+
+      - name: muffin_account_id
+        description: "External accounting-system account identifier."
+
+      - name: muffin_chain_id
+        description: "External accounting-system chain identifier."
+
+      - name: _updated_at
+        description: "Timestamp when the retailer record was last updated."

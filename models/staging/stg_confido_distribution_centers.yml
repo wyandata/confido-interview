@@ -1,0 +1,28 @@
+models:
+  - name: stg_confido_distribution_centers
+    description: "Staged Confido distribution centers."
+
+    columns:
+      - name: id
+        description: "Unique identifier for the distribution center."
+        tests:
+          - not_null
+          - unique
+
+      - name: _uuid
+        description: "UUID associated with the distribution center."
+
+      - name: name
+        description: "Name of the distribution center."
+
+      - name: global_customer_id
+        description: "Confido global customer associated with the distribution center."
+
+      - name: muffin_location_id
+        description: "External accounting-system location identifier."
+
+      - name: company_detail_id
+        description: "Confido company detail identifier."
+
+      - name: _updated_at
+        description: "Timestamp when the source record was last updated."

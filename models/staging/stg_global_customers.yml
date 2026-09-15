@@ -1,0 +1,25 @@
+models:
+  - name: stg_global_customers
+    description: "Staged Confido global customer records."
+
+    columns:
+      - name: id
+        description: "Unique identifier for the global customer."
+        tests:
+          - not_null
+          - unique
+
+      - name: _uuid
+        description: "UUID associated with the global customer."
+
+      - name: name
+        description: "Name of the global customer."
+
+      - name: company_detail_id
+        description: "Confido company detail identifier."
+
+      - name: is_distributor
+        description: "Indicates whether the global customer is a distributor."
+
+      - name: _updated_at
+        description: "Timestamp when the source record was last updated."
